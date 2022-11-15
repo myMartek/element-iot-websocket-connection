@@ -17,11 +17,11 @@ let run = async () => {
     let file = await fs.readFile('./lastPacket.txt', 'utf8');
     lastPacket = `&after=${file}`;
   } catch (e) {
-    lastPacket = '';
+    lastPacket = `&after=${process.env.AFTER}`;
   }
   let interval = null;
-
-  const ws = new WebSocket(`wss://${process.env.ELEMENTSERVER}/api/v1/readings/socket?auth=${process.env.API_KEY}${lastPacket}`);
+  console.log(`wss://${process.env.ELEMENTSERVER}${process.env.STREAMPATH}?auth=${process.env.API_KEY}${lastPacket}`);
+  const ws = new WebSocket(`wss://${process.env.ELEMENTSERVER}${process.env.STREAMPATH}?auth=${process.env.API_KEY}${lastPacket}`);
 
   ws.on('open', () => {
     console.log('connected');
