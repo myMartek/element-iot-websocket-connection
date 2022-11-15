@@ -20,7 +20,7 @@ let run = async () => {
     lastPacket = `&after=${process.env.AFTER}`;
   }
   let interval = null;
-  console.log(`wss://${process.env.ELEMENTSERVER}${process.env.STREAMPATH}?auth=${process.env.API_KEY}${lastPacket}`);
+  console.log(`Connecting to wss://${process.env.ELEMENTSERVER}${process.env.STREAMPATH}?auth=${process.env.API_KEY}${lastPacket}`);
   const ws = new WebSocket(`wss://${process.env.ELEMENTSERVER}${process.env.STREAMPATH}?auth=${process.env.API_KEY}${lastPacket}`);
 
   ws.on('open', () => {
